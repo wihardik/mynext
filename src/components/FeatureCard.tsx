@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import { useState } from 'react'
 import IconFallback from './IconFallback'
 
@@ -9,8 +8,15 @@ export default function FeatureCard({ feature }: { feature: { id: string; title:
     <div role="button" tabIndex={0} className="group flex cursor-pointer flex-col items-center gap-3 rounded-xl bg-white p-4 text-center shadow-sm transition hover:shadow-md">
       <div className="h-12 w-12">
         {!imgError ? (
-          // next/image will log in console in dev — use unoptimized fallback if needed
-          <Image src={feature.icon} alt={feature.title} width={48} height={48} loading="lazy" onError={() => setImgError(true)} />
+          <img
+            src={feature.icon}
+            alt={feature.title}
+            width={48}
+            height={48}
+            loading="lazy"
+            onError={() => setImgError(true)}
+            className="mx-auto h-12 w-12"
+          />
         ) : (
           <IconFallback />
         )}
